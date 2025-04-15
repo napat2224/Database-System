@@ -1,0 +1,24 @@
+db.orders_w_lines.aggregate([
+  {
+    $match: {
+      order_date: {
+        $gte: '2020-01-09',
+        $lte: '2020-01-16'
+      }
+    }
+  },
+  { $unwind: '$order_lines' },
+  {
+    $group: {
+      _id: '$order_lines.product_id',
+      total_order: { $sum: 1 }
+    }
+  },
+  {
+    $project: {
+      product_id: '$_id',
+      total_order: 1,
+      _id: 0
+    }
+  }
+]);

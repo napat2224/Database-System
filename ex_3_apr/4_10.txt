@@ -1,0 +1,16 @@
+db.product.aggregate([
+  {
+    $match: {
+      product_color: {
+        $regex: 'White',
+        $options: 'i'
+      }
+    }
+  },
+  {
+    $project: {
+      product_price: 0,
+      _id: 0
+    }
+  }
+]);

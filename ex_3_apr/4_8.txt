@@ -1,0 +1,32 @@
+db.orders_w_lines.aggregate([
+  {
+    $group: {
+      _id: '$customer_id',
+      count: { $sum: 1 }
+    }
+  },
+  {
+    $lookup: {
+      from: 'customer',
+      localField: '_id',
+      foreignField: 'customer_id',
+      as: 'yes'
+    }
+  },
+  { 
+    $unwind: { path: '$yes' }
+  },
+  {
+    $project: {
+      customer_name: '$yes.customer_name',
+      order_count: '$count',
+      _id: 0
+    }
+  },
+  { 
+    $sort: { order_count: -1 }
+  },
+  { 
+    $limit: 3
+  }
+])
