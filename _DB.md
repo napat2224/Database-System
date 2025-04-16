@@ -249,3 +249,30 @@ Each *column* has a header that gives a meaning of the data items.
             - execute a user-specified error-correction routine
         - in some case cannot be null, be careful XD
     - **update** - can violate everything TT
+
+
+# Normal Forms
+### First Normal Form (1NF)
+- **Atomic values only**  
+  Each field should contain only one value.  
+  - ❌ `course_name = "Astrology, Tarot"`  
+  - ✅ `course_name = "Astrology"`
+- **No repeating groups**  
+  Avoid multiple similar columns for the same attribute (e.g., `phone1`, `phone2`). Use separate rows or related tables.
+- **Unique rows with a Primary Key**  
+  Each table must have a primary key to uniquely identify each record.
+### Second Normal Form (2NF)
+- **Must satisfy 1NF**
+- **No partial dependency**  
+  All non-key attributes must be fully functionally dependent on the entire primary key.  
+  - ❌ `Course_Order(course_id, order_id, course_name)`  
+    (Here, `course_name` depends only on `course_id`)  
+  - ✅ Move `course_name` to `Course(course_id, course_name)`
+- Applies **only if** the table has a **composite primary key**.
+### Third Normal Form (3NF)
+- **Must satisfy 2NF**
+- **No transitive dependency**  
+  Non-key attributes should not depend on other non-key attributes.  
+  - ❌ `Account(account_id, username, email)`  
+    (If `username → email`, then `email` is transitively dependent)
+- **Every non-key attribute must depend directly and only on the primary key**
