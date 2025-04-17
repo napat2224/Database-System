@@ -40,7 +40,7 @@
         - most via "lock"
         - to guarantee duability use "write-ahead lock"
         - rolled back or continued from the transaction log left off
-        - <img src="image-2.png" width="800">
+        - <img src="img/image-2.png" width="800">
         
 ### CAP theorem or Brewer's theorem
 - impossible for a dist data store to simultaneously provide more than two of
@@ -49,10 +49,10 @@
 3. **Partition tolerance**: system continues oparating during a patition
 
 ### A Simplified Database System Environment
-<img src="image.png" width = "500">
+<img src="img/image.png" width = "500">
 
 ### Level of Abstraction Three Schema Architecture
-<img src="image-1.png" width = "600">
+<img src="img/image-1.png" width = "600">
 
 1. **Internal Level** - low-level data structure
 2. **Conceptual Level** - what data to store and what relationships
@@ -166,11 +166,11 @@
             - call that subclass "share subclass"
 - **Categories (UNION TYPES)**
     - a shared subclass is subclass in more than one distinct superclass/subclass realationships, where each relationships has a single superclass
-    <img src="image-3.png" alt="difference between catagories and share subclass" width= "600">
+    <img src="img/image-3.png" alt="difference between catagories and share subclass" width= "600">
     alt="difference between catagories and share subclass"
 ไปดู notation<a id="gogo3"></a>
-<img src="image-4.png" width="300">
-<img src="image-5.png" width="500">
+<img src="img/image-4.png" width="300">
+<img src="img/image-5.png" width="500">
 crow's foot notation
 
 # UNIT 3
