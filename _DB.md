@@ -1,10 +1,3 @@
-# To-Understand
-1. <input type="checkbox"> Go to [1](#gogo1)
-2. <input type="checkbox"> Go to [constaints on spr and gen](#gogo2)
-3. <input type="checkbox"> Go to [notation](#gogo3)
-
-<br>
-
 # Table of content
 1. [Unit 1: Overview](#unit-1)
 2. [Unit 2: ER Model](#unit-2)
@@ -276,3 +269,69 @@ Each *column* has a header that gives a meaning of the data items.
   - ❌ `Account(account_id, username, email)`  
     (If `username → email`, then `email` is transitively dependent)
 - **Every non-key attribute must depend directly and only on the primary key**
+
+# Storage and Indexing
+### Overview
+- how does DBMS store and access persistent data?
+- minimizing I/O cost
+- hash, tree based index?
+### External Storage
+- Disks
+    - Random acess devices
+    - retrieve any page at fixed cost
+- Tapes
+    - Sequential acess device
+### Files and access methods layer
+- Operation support (insert, delete, scan)
+- keep track of pages allocation
+- tracks available space
+- how is a relation stored?
+    - as a file of records, each has a **record id** which use to locate page number
+    - imprementby the componect: Files and access methods layer
+### File Organization
+- Alternative file organizations
+    - heap (random order)
+    - sorted
+    - indexes
+### Concepts
+- **index file** contains a collection of **data entries**(aka. index entries) -> (search-key, pointer)
+- Two basic kinds of indices
+    - **Ordered indices**
+    - **Hash indices**
+![Data Entry](./img/image-6.png)
+### Alternative For Data Entries
+- **Alternative 1**
+    - data entry k* is an **actual data record**
+    - at most 1 index
+    - if data is large, # of pages is high
+    - indexed file organization
+- **Alternative 2**
+    - data entry is <k,rid> pair
+- **Alternative 3**
+    - Data entry is <k,rid-list>
+- 2,3 smaller than 1
+### Index classification
+---
+- **Primary index** - search key contains primary key
+    - Sequential scan is efficient
+- **Secondary index** - not primary._.
+    - must be dense
+    - Sequential scan is expensive
+- (unique index - search ket contains candidate key)
+- primary, secondary when file modified, every index must be update
+---
+- **Clustered index** - order of data recode is close to order of data entries
+- **Unclustered index** - not clustered ._.
+---
+- **Dense Index Files** - index record appears for every search key value 
+    - faster
+- **Sparse Index Files**
+    - only for **Cluster and Primary** index
+    - less space ans leass maintenance overhead (insert, delete)
+
+### Index Data Structure
+- **HASH-BASE INDEXS**
+    - index is a collection of buckets
+    - good for equality selection
+- **B+ TREE INDEX**
+    - 50-100 fanout -> height really short
