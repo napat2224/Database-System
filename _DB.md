@@ -335,3 +335,7 @@ Each *column* has a header that gives a meaning of the data items.
     - good for equality selection
 - **B+ TREE INDEX**
     - 50-100 fanout -> height really short
+    - good for range search
+    - always balance in height
+    - fill factor - min pointer for a node
+    - todo: understand how it balance
