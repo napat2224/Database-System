@@ -1,3 +1,8 @@
+<!-- 
+todo: 
+add table of content, resize image 6, 7
+ -->
+
 # Table of content
 1. [Unit 1: Overview](#unit-1)
 2. [Unit 2: ER Model](#unit-2)
@@ -339,3 +344,31 @@ Each *column* has a header that gives a meaning of the data items.
     - always balance in height
     - fill factor - min pointer for a node
     - todo: understand how it balance
+
+### Cost Model
+In this course we ignore CPU cost, for simplicity (I/O cost dominate), ignore pre-fetching too, use Average-case analysis
+- B: The number of data page
+- R: Number of data records per page
+- D: AVG time to read and write disk page
+
+- **Operations to Compare** - Scan, Equality search, Range selection, Insert selection, Insert a record, Delete a record
+- **Compare File Organizations**
+    - Heap files(randon order; insert at eof)
+    - Sorted files, sored on a search key (no index)
+    - Clustered B+ tree file on a search key, Alternative 1
+    - Heap file with unclustered B+ tree index 
+Assumtions in our analysis
+- Heap files
+    - equality selection on key
+    - exactly one match
+- Sorted files
+    - files compact after deletions
+- Indexes
+    - Alt 2 & 3
+        - data entry size = 10% size of record
+    - Hash
+        - No overflow bucket
+        - 80% page occupany -> file size = 1.25 data size
+    - Tree
+        - 67% occupancy (typical) -> file size = 1.5 data size
+![cost table](./img/image-7.png)
