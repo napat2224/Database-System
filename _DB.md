@@ -372,3 +372,39 @@ Assumtions in our analysis
     - Tree
         - 67% occupancy (typical) -> file size = 1.5 data size
 ![cost table](./img/image-7.png)
+
+- Understanding the Workload
+    - more selective, you better index it
+- Choice of indexes
+    - consider the most important queries in turn
+    - trade-off: queries faster, updates slower and require disk space
+    - Where clause
+        - **Exact match - hash index**
+        - **range query - tree index**
+            - cluster may help 
+    - Multi-attribute
+        - order of attribute is important for range queries
+        - can sometimes enable **index-only strategies** - clustering is not important
+- Example
+``` sql
+SELECT E.dno FROM Emp E WHERE E.age>40
+/*
+ragne so b+ tree index on
+how selective -> if most people age > 40 not that selective so not worth
+is the index cluster?
+*/
+SELECT E.dno, COUNT(*) FROM Emp E WHERE E.age>10 GROUP BY E.dno
+/*
+consider the Group by
+if many age > 10 -> not selective -> better not create index on age
+group by dno, so Cluster E.dno index may be better -> dont even have to fetch, use only index very fast
+*/
+SELECT E.dno FROM Emp E WHERE E.hobby='Stamps'
+/*
+equality search but hobby not uniqe
+clustering on E.hobby helps!
+*/
+```
+
+### Indexs with Composite Search Keys
+- **in goodnote😭**
