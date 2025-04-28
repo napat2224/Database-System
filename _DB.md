@@ -275,6 +275,36 @@ Each *column* has a header that gives a meaning of the data items.
     (If `username → email`, then `email` is transitively dependent)
 - **Every non-key attribute must depend directly and only on the primary key**
 
+# Stored Routine
+### Stored routines
+- a block of code that save in database call when want
+- benefit: reuse code, security
+- **Stored functions**
+    - return something
+    - call by their name not from CALL, be part of query
+- **Stored procedure**
+    - don't return value
+    - call by CALL
+- **Triggers**
+    - automaticly run when something happen(insert, update, delete)
+    - 2 level (ex.100 row but in 1 statement)
+        - Row-level - call 100 times
+        - Statement-level - call 1 time
+    - create function(that return trigger) first, then create trigger (binding)
+    - we can DROP, or ALTER 
+### View - Virtual table
+- don't make things faster but, easier to call
+- reuse query
+- update table -> view updated
+- usually be read-only
+- high query cost, wanna reduce overhead -> materialize view(use more storage)
+### EXPLAIN, EXPLAIN ANALYZE
+- EXPLAIN shows how a SQL query will be executed (the query plan).
+- EXPLAIN ANALYZE actually runs the query and shows the real execution steps and time.
+### Transaction
+- update data on many places -> atomicity
+- commit things ._.
+
 # Storage and Indexing
 ### Overview
 - how does DBMS store and access persistent data?
