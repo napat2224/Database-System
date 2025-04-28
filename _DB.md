@@ -305,6 +305,34 @@ Each *column* has a header that gives a meaning of the data items.
 - update data on many places -> atomicity
 - commit things ._.
 
+
+# NoSQL
+- in this course we will learn Document database which is **MongoDB**
+- it is **schema-less** NoSQL document database, Scale well both data volumn and network traffic
+- termminology
+    - table -> collection, row -> document, column -> field, table joins -> $lookup
+- Document schema - JSON object that define structure in document
+- pros and cons **Embedding inside document**
+    - **Pros**
+        - pull everything in one query
+        - link data between collection through &lookup -> decrease overhead
+        - ensure atomic
+    - **Cons**
+        - document may be too big -> overhead
+        - MongoDB max at 16MB
+- pros and cons **Referencing**
+    - **Pros**
+        - document size not too big
+        - less redundency (not a big deal, if perf ok is ok)
+    - **Cons**
+        - use more queries or $lookup
+### schema design rules
+1. use embedding first if possible,and one-to-few case too (one-to-many or call separately better use referencing)
+2. use case that need to call separately, make it new collection
+3. don't use lookup if not necessary
+4. one-to-squillions(1000)(ex.log) -> new document and point back to host
+5. many-to-many -> new document, point back and forth
+
 # Storage and Indexing
 ### Overview
 - how does DBMS store and access persistent data?
