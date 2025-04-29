@@ -306,6 +306,10 @@ Each *column* has a header that gives a meaning of the data items.
 - commit things ._.
 
 
+# Windows Function
+- ประมวลชุดรายการข้อมูล โดยไม่มีการรวมรายการเหมือน aggregate function
+
+
 # NoSQL
 - in this course we will learn Document database which is **MongoDB**
 - it is **schema-less** NoSQL document database, Scale well both data volumn and network traffic
